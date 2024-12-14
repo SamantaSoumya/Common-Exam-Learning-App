@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="30">
+    <Properties>
+        <!-- Define file paths for each log -->
+        <Property name="LOG_DIR">D:\logs</Property>
+        <Property name="INFO_LOG_FILE">${LOG_DIR}/info.log</Property>
+        <Property name="DEBUG_LOG_FILE">${LOG_DIR}/debug.log</Property>
+        <Property name="ERROR_LOG_FILE">${LOG_DIR}/error.log</Property>
+    </Properties>
+
+    <Appenders>
+        <!-- Console Appender -->
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+
+        <!-- File Appenders for each log level -->
+        <RollingFile name="InfoFile" fileName="${INFO_LOG_FILE}" filePattern="${INFO_LOG_FILE}.%d{yyyy-MM-dd}.gz">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+            <Filters>
+                <ThresholdFilter level="INFO"/>
+                <ThresholdFilter level="ERROR" onMatch="DENY" onMismatch="NEUTRAL"/>
+            </Filters>
+        </RollingFile>
+
+        <RollingFile name="DebugFile" fileName="${DEBUG_LOG_FILE}" filePattern="${DEBUG_LOG_FILE}.%d{yyyy-MM-dd}.gz">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+            <Filters>
+                <ThresholdFilter level="DEBUG" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+        </RollingFile>
+
+        <RollingFile name="ErrorFile" fileName="${ERROR_LOG_FILE}" filePattern="${ERROR_LOG_FILE}.%d{yyyy-MM-dd}.gz">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+            <Filters>
+                <ThresholdFilter level="ERROR"/>
+            </Filters>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <!-- Root logger outputs to both console and individual files -->
+        <Root level="info">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="InfoFile"/>
+            <AppenderRef ref="DebugFile"/>
+            <AppenderRef ref="ErrorFile"/>
+        </Root>
+    </Loggers>
+</Configuration>
