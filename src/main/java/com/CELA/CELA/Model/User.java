@@ -34,6 +34,9 @@ public class User {
     @Column(nullable = false) // Maps the field to a column; makes it non-null
     private String role; // Role (e.g., Student, Organisation)
 
+    @Column(nullable = false) // Maps the field to a column; makes it non-null
+    private String password;
+
     @Builder.Default
     @Column(nullable = false) //  must be non-null
     private boolean isApproved = false;
