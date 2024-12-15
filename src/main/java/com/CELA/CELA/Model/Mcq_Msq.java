@@ -1,5 +1,7 @@
 package com.CELA.CELA.Model;
 
+import java.util.ArrayList;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,6 +20,12 @@ public class Mcq_Msq {
     @Id // Marks this field as the primary key
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-generates the ID
     private Long id;
+    
+    @Column(nullable = false)// marks must be unique and non-null
+    private Long examId;
+    
+    @Column(nullable = false)// marks must be unique and non-null
+    private Long orgId;
 
     @Column(nullable = false) // Maps the field to a column; makes it non-null
     private String question;
@@ -34,8 +42,8 @@ public class Mcq_Msq {
     @Column(nullable = false)// Option4 must be unique and non-null
     private String option4;
     
-    @Column(nullable = false)// Answer must be unique and non-null
-    private String answer;// select (e.g. option1,option2,option3,option1 & option2,all)
+    @Column(columnDefinition = "JSON", nullable = false)// Answer must be unique and non-null
+    private ArrayList<String> answer;// select (e.g. option1,option2,option3,option1 & option2,all)
 
     @Column(nullable = false)// marks must be unique and non-null
     private int marks;

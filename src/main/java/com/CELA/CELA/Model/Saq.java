@@ -19,6 +19,12 @@ public class Saq {
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-generates the ID
     private Long id;
 
+    @Column(nullable = false)// marks must be unique and non-null
+    private Long examId;
+    
+    @Column(nullable = false)// marks must be unique and non-null
+    private Long orgId;
+
     @Column(nullable = false) // Maps the field to a column; makes it non-null
     private String question;
 
