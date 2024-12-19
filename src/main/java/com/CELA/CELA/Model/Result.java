@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor // Generates an all-arguments constructor
 @Builder // Provides a builder pattern implementation
 @Entity // Marks this as a JPA entity
-@Table(name = "Results") // Maps this entity to the "Results" table in the database
+@Table(name = "results") // Maps this entity to the "Results" table in the database
 public class Result {
 
     @Id // Marks this field as the primary key

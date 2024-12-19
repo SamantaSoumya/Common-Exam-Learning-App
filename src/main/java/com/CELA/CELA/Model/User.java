@@ -12,12 +12,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor // Generates an all-arguments constructor
 @Builder // Provides a builder pattern implementation
 @Entity // Marks this as a JPA entity
-@Table(name = "Users") // Maps this entity to the "Users" table in the database
+@Table(name = "users") // Maps this entity to the "Users" table in the database
 public class User {
 
     @Id // Marks this field as the primary key
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-generates the ID
-    private Long id;
+    private Long userId;
 
     @Column(nullable = false) // Maps the field to a column; makes it non-null
     private String firstName;
