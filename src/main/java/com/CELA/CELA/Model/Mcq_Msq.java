@@ -104,7 +104,6 @@ public class Mcq_Msq {
 	}
 
 	@Id // Marks this field as the primary key
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-generates the ID
     private Long id;
     
     @Column(nullable = false)// marks must be unique and non-null

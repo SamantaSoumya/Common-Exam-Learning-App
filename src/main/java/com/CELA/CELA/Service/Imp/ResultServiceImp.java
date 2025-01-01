@@ -1,5 +1,6 @@
 package com.CELA.CELA.Service.Imp;
 
+import com.CELA.CELA.Model.Exam;
 import com.CELA.CELA.Model.Result;
 import com.CELA.CELA.Repository.ResultRepository;
 import com.CELA.CELA.Service.ResultService;
@@ -93,4 +94,28 @@ public class ResultServiceImp implements ResultService {
             throw new RuntimeException("Failed to delete result", ex);
         }
     }
+    
+    @Override
+	public List<Result> findExamsByStudentId(Long studentId) {
+		try {
+            List<Result> exams = resultRepository.findExamsByStudentId(studentId);
+            logger.info("Fetched all exam details successfully.");
+            return exams;
+        } catch (Exception ex) {
+            logger.error("Error fetching all exams: {}", ex.getMessage());
+            throw new RuntimeException("Failed to fetch all exam details", ex);
+        }
+	}
+
+	@Override
+	public List<Result> findResultByorgId(Long orgId) {
+		try {
+            List<Result> results = resultRepository.findResultByorgId(orgId);
+            logger.info("Fetched all result details successfully.");
+            return results;
+        } catch (Exception ex) {
+            logger.error("Error fetching all exams: {}", ex.getMessage());
+            throw new RuntimeException("Failed to fetch all exam details", ex);
+        }
+	}
 }

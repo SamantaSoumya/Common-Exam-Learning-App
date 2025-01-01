@@ -19,8 +19,7 @@ import lombok.Setter;
 @Table(name = "saqs") // Maps this entity to the "Students" table in the database
 public class Saq {
 
-    @Id // Marks this field as the primary key
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-generates the ID
+    @Id // Marks this field as the primary key// Auto-generates the ID
     private Long id;
 
     @Column(nullable = false)// marks must be unique and non-null

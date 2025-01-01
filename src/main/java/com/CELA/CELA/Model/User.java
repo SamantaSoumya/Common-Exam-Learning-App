@@ -43,7 +43,7 @@ public class User {
 
     @Builder.Default
     @Column(nullable = false) //  must be non-null
-    private boolean isApproved = false;
+    private boolean isApproved;
 
 	public Long getUserId() {
 		return userId;
@@ -101,7 +101,7 @@ public class User {
 		this.password = password;
 	}
 
-	public boolean isApproved() {
+	public boolean getIsApproved() {
 		return isApproved;
 	}
 

@@ -91,5 +91,18 @@ public class ExamServiceImp implements ExamService {
             throw new RuntimeException("Failed to delete exam details", ex);
         }
     }
+
+	@Override
+	public List<Exam> getAllExamDetailsByorgId(Long orgId) {
+		try {
+            List<Exam> exams = examRepository.findExamByorgId(orgId);
+            logger.info("Fetched all exam details successfully.");
+            return exams;
+        } catch (Exception ex) {
+            logger.error("Error fetching all exams: {}", ex.getMessage());
+            throw new RuntimeException("Failed to fetch all exam details", ex);
+        }
+	}
+
     
 }

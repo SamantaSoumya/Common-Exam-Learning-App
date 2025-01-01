@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000", methods = {RequestMethod.GET, RequestMethod.POST,RequestMethod.PUT, RequestMethod.DELETE})
 @RequestMapping("/api/users")
 public class UserController {
 
@@ -67,5 +68,32 @@ public class UserController {
         userService.deleteUser(id);
         logger.info("Deleted user for ID: {}", id);
         return ResponseEntity.ok("User deleted successfully");
+    }
+    
+    @GetMapping("/admin/{role}")
+    public ResponseEntity<List<User>> getAllUsersByRole(@PathVariable String role) {
+        List<User> users = userService.getAllUserDetailsByRole(role);
+        logger.info("Fetched all users.");
+        return ResponseEntity.ok(users);
+    }
+    
+    @GetMapping("/admin/isApproved/{flag}")
+    public ResponseEntity<List<User>> getAllUsersByIsApproved(@PathVariable boolean flag) {
+        List<User> users = userService.getAllUserDetailsByIsApproved(flag);
+        logger.info("Fetched all users.");
+        return ResponseEntity.ok(users);
+    }
+    
+    @PutMapping("/update/{id}")
+    public ResponseEntity<String> approvedUser(@PathVariable Long id) {
+        userService.approvedUser(id);
+        logger.info("Updated user for ID: {}", id);
+        return ResponseEntity.ok("User updated successfully");
+    }
+    @GetMapping("/student/{id}")
+    public ResponseEntity <String> getNameByuserId(@PathVariable Long id) {
+        String name = userService.getNameByuserId(id);
+        logger.info("Fetched user name succesfully");
+        return ResponseEntity.ok(name);
     }
 }

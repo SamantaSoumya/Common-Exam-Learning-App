@@ -11,4 +11,5 @@ public interface ExamService {
     Boolean updateExamDetails(Long id, Exam exam);
     Boolean addExamDetails(Exam exam);
     Boolean deleteExamDetails(Long id);
+    List<Exam> getAllExamDetailsByorgId(Long orgId);
 }

@@ -28,8 +28,19 @@ public class Result {
 
     @Column(nullable = false) // Maps the field to a column; makes it non-null
     private Long examId;
-
+    
     @Column(nullable = false) // Maps the field to a column; makes it non-null
+    private Long orgId;
+
+    public Long getOrgId() {
+		return orgId;
+	}
+
+	public void setOrgId(Long orgId) {
+		this.orgId = orgId;
+	}
+
+	@Column(nullable = false) // Maps the field to a column; makes it non-null
     private int totalMarks;
 
 	public Long getStudentId() {

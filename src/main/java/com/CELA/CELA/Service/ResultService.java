@@ -10,4 +10,6 @@ public interface ResultService {
     List<Result> getAllUserResult();
     Boolean updateResult(Long id,Result result);
     Boolean deleteResult(Long id);
+    List<Result> findExamsByStudentId(Long studentId);
+    List<Result>findResultByorgId(Long orgId);
 }

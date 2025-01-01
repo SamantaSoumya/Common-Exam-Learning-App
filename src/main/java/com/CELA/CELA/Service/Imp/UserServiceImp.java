@@ -22,6 +22,7 @@ public class UserServiceImp implements UserService {
     @Override
     public Boolean addUser(User user) {
         try {
+        	System.out.println(user.getIsApproved());
             userRepository.save(user);
             logger.info("User added successfully: {}", user);
             return true;
@@ -94,5 +95,56 @@ public class UserServiceImp implements UserService {
             throw new RuntimeException("Failed to delete user", ex);
         }
     }
+
+	@Override
+	public List<User> getAllUserDetailsByRole(String role) {
+		try {
+            List<User> users = userRepository.findUserByRole(role);
+            logger.info("Fetched all user details successfully.");
+            return users;
+        } catch (Exception ex) {
+            logger.error("Error fetching all users: {}", ex.getMessage());
+            throw new RuntimeException("Failed to fetch user details", ex);
+        }
+	}
+
+	@Override
+	public List<User> getAllUserDetailsByIsApproved(boolean flag) {
+		try {
+            List<User> users = userRepository.findUserByIsApproved(flag);
+            logger.info("Fetched all user details successfully.");
+            return users;
+        } catch (Exception ex) {
+            logger.error("Error fetching all users: {}", ex.getMessage());
+            throw new RuntimeException("Failed to fetch user details", ex);
+        }
+	}
+
+	@Override
+	public Boolean approvedUser(Long id) {
+		try {
+            User existingUser = userRepository.findById(id)
+                    .orElseThrow(() -> {
+                        logger.error("User not found for update with ID: {}", id);
+                        return new ResourceNotFoundException("User not found with ID: " + id);
+                    });
+
+            // Update fields
+            existingUser.setApproved(true);
+            userRepository.save(existingUser);
+            logger.info("User updated successfully: {}", existingUser);
+            return true;
+        } catch (Exception ex) {
+            logger.error("Error updating user with ID {}: {}", id, ex.getMessage());
+            throw new RuntimeException("Failed to update user", ex);
+        }
+	}
+
+	@Override
+	public String getNameByuserId(Long id) {
+		logger.info("Fetching name for user ID: {}", id);
+        return userRepository.getNameByuserId(id);
+                
+	}
 }
 

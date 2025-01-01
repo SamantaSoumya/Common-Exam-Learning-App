@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000", methods = {RequestMethod.GET, RequestMethod.POST,RequestMethod.PUT, RequestMethod.DELETE})
 @RequestMapping("/api/exams")
 public class ExamController {
 
@@ -68,4 +69,12 @@ public class ExamController {
         logger.info("Exam deleted for ID: {}", id);
         return ResponseEntity.ok("Exam deleted successfully");
     }
+    
+    @GetMapping("/user/{id}")
+    public ResponseEntity<List<Exam>> getAllExamsByorgId(@PathVariable Long id) {
+        List<Exam> exams = examService.getAllExamDetailsByorgId(id);
+        logger.info("Fetched all exams");
+        return ResponseEntity.ok(exams);
+    }
+    
 }

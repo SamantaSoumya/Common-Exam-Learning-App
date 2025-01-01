@@ -22,10 +22,18 @@ import lombok.Setter;
 public class Exam {
 
     @Id // Marks this field as the primary key
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-generates the ID
     private Long examId;
+    
+    private Long orgId;
+    public Long getOrgId() {
+		return orgId;
+	}
 
-    @Column(columnDefinition = "JSON", nullable = false)
+	public void setOrgId(Long orgId) {
+		this.orgId = orgId;
+	}
+
+	@Column(columnDefinition = "JSON", nullable = false)
     @Convert(converter = Converterr.class)
     private List<String> questions;
 
