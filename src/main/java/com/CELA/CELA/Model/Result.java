@@ -1,5 +1,9 @@
 package com.CELA.CELA.Model;
 
+import java.time.LocalDateTime;
+
+import org.hibernate.annotations.CreationTimestamp;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -73,6 +77,27 @@ public class Result {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+	@Column(nullable = false, updatable = false)
+    @CreationTimestamp
+    private LocalDateTime createdDate;
+
+	public Result(Long id, Long studentId, Long examId, Long orgId, int totalMarks, LocalDateTime createdDate) {
+		super();
+		this.id = id;
+		this.studentId = studentId;
+		this.examId = examId;
+		this.orgId = orgId;
+		this.totalMarks = totalMarks;
+		this.createdDate = createdDate;
+	}
+
+	public LocalDateTime getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(LocalDateTime createdDate) {
+		this.createdDate = createdDate;
 	}
     
 }

@@ -1,6 +1,10 @@
 package com.CELA.CELA.Model;
 
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import com.CELA.CELA.Custom.Converterr;
 
@@ -25,7 +29,44 @@ public class Exam {
     private Long examId;
     
     private Long orgId;
-    public Long getOrgId() {
+    @Column(nullable = false, updatable = false)
+    @CreationTimestamp
+    private LocalDateTime createdDate;
+    private String examName;
+    public Exam(Long examId, Long orgId, LocalDateTime createdDate, String examName, List<String> questions) {
+		super();
+		this.examId = examId;
+		this.orgId = orgId;
+		this.createdDate = createdDate;
+		this.examName = examName;
+		this.questions = questions;
+	}
+
+	public String getExamName() {
+		return examName;
+	}
+
+	public void setExamName(String examName) {
+		this.examName = examName;
+	}
+
+	public Exam(Long examId, Long orgId, LocalDateTime createdDate, List<String> questions) {
+		super();
+		this.examId = examId;
+		this.orgId = orgId;
+		this.createdDate = createdDate;
+		this.questions = questions;
+	}
+
+	public LocalDateTime getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(LocalDateTime createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	public Long getOrgId() {
 		return orgId;
 	}
 

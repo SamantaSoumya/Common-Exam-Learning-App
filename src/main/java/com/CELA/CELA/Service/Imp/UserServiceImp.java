@@ -8,6 +8,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.UserRecord;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,6 +23,9 @@ public class UserServiceImp implements UserService {
 
     @Autowired
     private UserRepository userRepository;
+    
+    @Autowired
+    private JavaMailSender mailSender;
 
     @Override
     public Boolean addUser(User user) {
@@ -25,6 +33,16 @@ public class UserServiceImp implements UserService {
         	System.out.println(user.getIsApproved());
             userRepository.save(user);
             logger.info("User added successfully: {}", user);
+        	 UserRecord.CreateRequest request = new UserRecord.CreateRequest()
+                     .setEmail(user.getEmail())
+                     .setPassword(user.getPassword())
+                     .setEmailVerified(false);
+
+             FirebaseAuth.getInstance().createUser(request);
+
+             // Send email with password
+             sendEmail(user.getEmail(), user.getPassword());
+             sendEmailAdmin(user.getEmail(),user.getUserId());
             return true;
         } catch (Exception ex) {
             logger.error("Error adding user: {}", ex.getMessage());
@@ -146,5 +164,30 @@ public class UserServiceImp implements UserService {
         return userRepository.getNameByuserId(id);
                 
 	}
+	private void sendEmail(String email, String password) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(email);
+        message.setSubject("Welcome! Your Account Password");
+        message.setText("Your password is: " + password);
+        mailSender.send(message);
+    }
+	private void sendEmailAdmin(String email,Long id) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        String adminEmail = "cela5202@gmail.com";
+        message.setTo(adminEmail);
+        message.setSubject("New Organisation added with the User Id" + id + " and email is " + email);
+        mailSender.send(message);
+    }
+}
+class UserRequest {
+    private String email;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }
 

@@ -1,6 +1,9 @@
 package com.CELA.CELA.Model;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import com.CELA.CELA.Custom.Converterr;
 
@@ -133,5 +136,31 @@ public class Mcq_Msq {
 
     @Column(nullable = false)// marks must be unique and non-null
     private int marks;
+    @Column(nullable = false, updatable = false)
+    @CreationTimestamp
+    private LocalDateTime createdDate;
+	public Mcq_Msq(Long id, Long examId, Long orgId, String question, String option1, String option2, String option3,
+			String option4, ArrayList<String> answer, int marks, LocalDateTime createdDate) {
+		super();
+		this.id = id;
+		this.examId = examId;
+		this.orgId = orgId;
+		this.question = question;
+		this.option1 = option1;
+		this.option2 = option2;
+		this.option3 = option3;
+		this.option4 = option4;
+		this.answer = answer;
+		this.marks = marks;
+		this.createdDate = createdDate;
+	}
+
+	public LocalDateTime getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(LocalDateTime createdDate) {
+		this.createdDate = createdDate;
+	}
 }
 

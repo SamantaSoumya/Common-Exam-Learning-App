@@ -1,18 +1,21 @@
 package com.CELA.CELA.Model;
 
+import java.time.LocalDateTime;
+
+import org.hibernate.annotations.CreationTimestamp;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
+
 import lombok.Setter;
 
 
 @Data // Generates getters, setters, toString, equals, and hashCode
 @Getter
 @Setter
-@NoArgsConstructor // Generates a no-argument constructor
 @AllArgsConstructor // Generates an all-arguments constructor
 @Builder // Provides a builder pattern implementation
 @Entity // Marks this as a JPA entity
@@ -44,6 +47,9 @@ public class User {
     @Builder.Default
     @Column(nullable = false) //  must be non-null
     private boolean isApproved;
+    @Column(nullable = false, updatable = false)
+    @CreationTimestamp
+    private LocalDateTime createdDate;
 
 	public Long getUserId() {
 		return userId;

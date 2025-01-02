@@ -1,5 +1,9 @@
 package com.CELA.CELA.Model;
 
+import java.time.LocalDateTime;
+
+import org.hibernate.annotations.CreationTimestamp;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -36,6 +40,28 @@ public class Saq {
 
     @Column(nullable = false) // Maps the field to a column; makes it non-null
     private int marks;
+    @Column(nullable = false, updatable = false)
+    @CreationTimestamp
+    private LocalDateTime createdDate;
+
+	public Saq(Long id, Long examId, Long orgId, String question, String answer, int marks, LocalDateTime createdDate) {
+		super();
+		this.id = id;
+		this.examId = examId;
+		this.orgId = orgId;
+		this.question = question;
+		this.answer = answer;
+		this.marks = marks;
+		this.createdDate = createdDate;
+	}
+
+	public LocalDateTime getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(LocalDateTime createdDate) {
+		this.createdDate = createdDate;
+	}
 
 	public Long getId() {
 		return id;
