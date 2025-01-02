@@ -82,15 +82,6 @@ public class Result {
     @CreationTimestamp
     private LocalDateTime createdDate;
 
-	public Result(Long id, Long studentId, Long examId, Long orgId, int totalMarks, LocalDateTime createdDate) {
-		super();
-		this.id = id;
-		this.studentId = studentId;
-		this.examId = examId;
-		this.orgId = orgId;
-		this.totalMarks = totalMarks;
-		this.createdDate = createdDate;
-	}
 
 	public LocalDateTime getCreatedDate() {
 		return createdDate;

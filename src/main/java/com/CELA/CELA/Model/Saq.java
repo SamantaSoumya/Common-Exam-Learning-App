@@ -44,16 +44,7 @@ public class Saq {
     @CreationTimestamp
     private LocalDateTime createdDate;
 
-	public Saq(Long id, Long examId, Long orgId, String question, String answer, int marks, LocalDateTime createdDate) {
-		super();
-		this.id = id;
-		this.examId = examId;
-		this.orgId = orgId;
-		this.question = question;
-		this.answer = answer;
-		this.marks = marks;
-		this.createdDate = createdDate;
-	}
+
 
 	public LocalDateTime getCreatedDate() {
 		return createdDate;

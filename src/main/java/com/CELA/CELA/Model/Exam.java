@@ -33,14 +33,6 @@ public class Exam {
     @CreationTimestamp
     private LocalDateTime createdDate;
     private String examName;
-    public Exam(Long examId, Long orgId, LocalDateTime createdDate, String examName, List<String> questions) {
-		super();
-		this.examId = examId;
-		this.orgId = orgId;
-		this.createdDate = createdDate;
-		this.examName = examName;
-		this.questions = questions;
-	}
 
 	public String getExamName() {
 		return examName;
