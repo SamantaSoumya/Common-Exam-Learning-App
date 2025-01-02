@@ -29,7 +29,7 @@ public class Exam {
     private Long examId;
     
     private Long orgId;
-    @Column(nullable = false, updatable = false)
+    @Column(updatable = false)
     @CreationTimestamp
     private LocalDateTime createdDate;
     private String examName;

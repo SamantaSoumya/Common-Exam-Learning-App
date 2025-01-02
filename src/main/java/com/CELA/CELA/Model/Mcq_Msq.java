@@ -136,7 +136,7 @@ public class Mcq_Msq {
 
     @Column(nullable = false)// marks must be unique and non-null
     private int marks;
-    @Column(nullable = false, updatable = false)
+    @Column(updatable = false)
     @CreationTimestamp
     private LocalDateTime createdDate;
 

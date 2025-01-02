@@ -47,7 +47,7 @@ public class User {
     @Builder.Default
     @Column(nullable = false) //  must be non-null
     private boolean isApproved;
-    @Column(nullable = false, updatable = false)
+    @Column(updatable = false)
     @CreationTimestamp
     private LocalDateTime createdDate;
 

@@ -40,7 +40,7 @@ public class Saq {
 
     @Column(nullable = false) // Maps the field to a column; makes it non-null
     private int marks;
-    @Column(nullable = false, updatable = false)
+    @Column(updatable = false)
     @CreationTimestamp
     private LocalDateTime createdDate;
 

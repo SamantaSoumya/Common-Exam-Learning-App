@@ -78,7 +78,7 @@ public class Result {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	@Column(nullable = false, updatable = false)
+	@Column(updatable = false)
     @CreationTimestamp
     private LocalDateTime createdDate;
 
